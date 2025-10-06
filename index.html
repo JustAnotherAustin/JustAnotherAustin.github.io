@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- important for mobile scaling -->
+  <title>GLXY Blog</title>
+  <style>
+    body {
+      background: #1e1e1e;
+      color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #app {
+      display: flex;
+      height: 100%;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    #sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin-right: 16px;
+      flex-shrink: 0;
+    }
+
+    #content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    fieldset {
+      border: 2px solid #555;
+      padding: 16px;
+      background: #282828;
+    }
+
+    #sidebar fieldset:first-of-type {
+      margin-bottom: 16px;
+    }
+
+    /* Links tab fills the remaining sidebar space */
+    #sidebar fieldset:last-of-type {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    legend {
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      padding: 0 8px;
+      margin-left: -8px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.2em;
+      letter-spacing: 1px;
+    }
+
+    #buttons-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+      flex-grow: 1;
+    }
+
+    button {
+      padding: 12px;
+      background: #444;
+      color: #fff;
+      border: 1px solid #666;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease-out;
+    }
+
+    button:hover {
+      background: #555;
+    }
+
+    button:active {
+      transform: scale(0.98);
+      background-color: #666;
+    }
+
+    /* Blog posts */
+    .blog-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.blog-post {
+  background: #333;
+  padding: 16px;
+  border: 1px solid #444;
+  box-shadow: 0 2px 6px rgba(0,0,0,.5);
+  display: flex; /* Make blog-post a flex container */
+  flex-direction: column; /* Stack header and content vertically */
+}
+
+.blog-post h2 {
+  margin: 0 0 8px;
+  font-size: 1.2em;
+}
+
+.blog-post small {
+  color: #aaa;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* New: Container for content and image */
+.blog-post-body {
+  display: flex; /* This will arrange text and image side-by-side */
+  gap: 16px; /* Space between text and image */
+  align-items: flex-start; /* Align items to the top */
+}
+
+/* New: Image container for styling */
+.blog-post-image-container {
+  flex-shrink: 0; /* Prevent image container from shrinking */
+  max-width: 33.33%; /* Max width 1/3 of the blog-post-body */
+  height: auto; /* Ensure height scales */
+  display: flex; /* Use flex to align image itself */
+  justify-content: flex-end; /* Push the image to the right within its container */
+  margin-left: auto; /* Push the image container to the far right */
+}
+
+.blog-post-image-container img {
+  width: 100%; /* Image takes full width of its container */
+  height: 100%; /* Image takes full height of its container */
+  object-fit: cover; /* Cover the container while maintaining aspect ratio */
+  display: block; /* Remove extra space below image */
+}
+
+/* New: Text content container */
+.blog-post-text-content {
+  flex-grow: 1; /* Allow text content to take up remaining space */
+}
+
+.blog-post p {
+  margin: 0 0 10px;
+}
+
+.read-more {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: bold;
+  display: block; /* Ensure it takes its own line */
+  margin-top: 10px; /* Space above read more link */
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+/* ... existing media queries ... */
+@media (max-width: 768px) {
+  /* ... existing mobile styles ... */
+  .blog-post-body {
+    flex-direction: column; /* Stack image and text vertically on mobile */
+  }
+
+  .blog-post-image-container {
+    max-width: 100%; /* Allow image to take full width on mobile */
+    margin-left: 0; /* Remove right alignment on mobile */
+  }
+}
+
+    .read-more {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .read-more:hover {
+      text-decoration: underline;
+    }
+
+    /* ----------------- MOBILE RESPONSIVE ----------------- */
+    @media (max-width: 768px) {
+      body {
+        height: auto;
+        overflow: auto;
+      }
+
+      #app {
+        flex-direction: column;
+        height: auto;
+      }
+
+      #sidebar {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 16px;
+      }
+
+      #content {
+        width: 100%;
+        flex-grow: 1;
+      }
+
+      .blog-post {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <fieldset>
+        <legend>Title</legend>
+        <h1>This was made for Communications 7b</h1>
+      </fieldset>
+      <fieldset>
+        <legend>Links</legend>
+        <div id="buttons-container">
+          <button onclick="window.open('https://youtube.com/@JustAnother_Austin','_blank')">YouTube</button>
+          <p><strong>The "Read More" buttons don't do anything</strong></p>
+        </div>
+      </fieldset>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+      <fieldset>
+        <legend>Blog Posts</legend>
+        <div class="blog-container">
+          <div class="blog-post">
+            <h2>I made a website!!</h2>
+            <small>10/06/2025</small>
+            <p>Well, the requirements for Communications 7b state that I need to make a blog post about things I enjoy.. well I do enjoy making websites! But I guess in a way this isnt a post as it is hard coded into the site.. but making a full server and everything may not be the easiest thing. Its do able, but I don't feel like running my PC as a server right now, and I can't nativly port forward on my PC so like I wouldntt be able to access it from anywhere else. But anyways, lets talk about the design of this site cus like, I think its really cool. I found this style of theme somewhere else and I was like, "Ya, I love this," and so I made it! Its not 100% how I like it, and some of the CSS could still be edited for sure, but its prettty cool! and its not even that much lines either, only about 160 lines of CSS...</p>
+            <p></p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+
+          <div class="blog-post">
+            <h2>I redecorated my room!</h2>
+            <small>10/06/2025</small>
+            <div class="blog-post-body">
+              <div class="blog-post-text-content">
+                <p>I felt like changing some things up and so I hung up my old baseball jersys because I thought it would be cool! I have to move around some of my flags I have gotten from scouts, those are over by the drum set now along with a bunch of other posters and stuff, but overall, I really love the new look of it!</p>
+              </div>
+              <div class="blog-post-image-container">
+                <img src="BlogPost.jpg" alt="A beautifully redecorated room" />
+              </div>
+            </div>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+
+          <div class="blog-post">
+            <h2>Hmm.. A 3rd Blog Post</h2>
+            <small>October 2, 2025</small>
+            <p>Lets talk about them drums, cause I was doing really good the other nigth! I mainly play drums along with Clone hero, which is like guitar hero but better and for PCs! I had to get some special cables for it, and I had to find a way to still be able to talk on call while I'm over there so I can chat with people. I ended up taking my mic off the arm.. but that didnt work well, then I took the entire mic arm off, and tthatt worked just it took a few  minutes. As of recently I have been taking the arm out of the mount part and using a bungie cord to hang it and it works amazingly!! And the audio is all built in with the drum module, all I had to do was use VoiceMeeter to digitaly wire all the audio I need to the different sources because of the way I have things setup!</p>
+            <a href="#" class="read-more">Read More →</a>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+</body>
+</html>
